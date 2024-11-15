@@ -1,9 +1,9 @@
 {
-  "name": "my-turborepo",
+  "name": "todo-app",
   "version": "0.0.0",
   "private": true,
-  "description": "",
-  "author": "",
+  "description": "A todo app built with Turbo",
+  "author": "riadh benchouche",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "turbo dev",
@@ -16,7 +16,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "turbo": "^2.3.0"
   },
   "packageManager": "pnpm@8.15.5",
