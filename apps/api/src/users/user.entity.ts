@@ -7,6 +7,8 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 import { IsEmail } from 'class-validator';
+import { Role } from './roles.enum';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class User {
@@ -20,8 +22,12 @@ export class User {
   @IsEmail()
   email: string;
 
+  @Exclude()
   @Column()
   password: string;
+
+  @Column({ default: Role.USER })
+  role: Role;
 
   @Column({ default: true })
   isActive: boolean;
