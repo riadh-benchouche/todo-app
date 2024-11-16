@@ -23,6 +23,7 @@ import { Roles } from '../auth/roles.decorator';
 import { Role } from './roles.enum';
 import { plainToInstance } from 'class-transformer';
 import { AuthUser } from './user.types';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Controller('users')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
@@ -47,18 +48,17 @@ export class UsersController {
   /**
    * @title Find all users
    * @description Find all users in the database with pagination
-   * @param limit
-   * @param offset
    * @returns { data: User[]; total: number }
    * @throws ForbiddenException
    * @throws BadRequestException
+   * @param paginationDto
    */
   @Roles(Role.ADMIN)
   @Get()
   async findAll(
-    @Query('limit') limit = 10,
-    @Query('offset') offset = 0,
+    @Query() paginationDto: PaginationDto,
   ): Promise<{ data: User[]; total: number }> {
+    const { limit, offset } = paginationDto;
     const users = await this.usersService.findAll(
       Number(limit),
       Number(offset),
